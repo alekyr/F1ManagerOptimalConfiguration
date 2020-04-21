@@ -1,5 +1,5 @@
 %% Copyright by Alexios-Spyridon Kyriakides, 2020
-clear;clc;tic
+clear; clc; tic
 %% REQUIRED INPUT
 % Define the available car parts by entering the respective ability (e.g., Power)
 % value. Each time a new part of an upgrade is performed you need to change
