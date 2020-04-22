@@ -2,7 +2,7 @@ function y = FUNOBJ_overall(x,p)
 % The problem that is solved here is defined as:
 % 
 %     m  n                              n
-% J = Σ (Σ(Component(i).Attribute(j)) - Σ(Component(i).MaxValueofAttribute(j)))
+% J = ? (?(Component(i).Attribute(j)) - ?(Component(i).MaxValueofAttribute(j)))
 %     j  i                              i
 % 
 % i = [Brakes, Gear, RearWing, FrontWing, Suspension, Engine]
