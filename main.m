@@ -1,7 +1,5 @@
 %% Copyright by Alexios-Spyridon Kyriakides, 2020
-
 clear; clc; tic
-
 %% REQUIRED INPUT
 % Define the available car parts by entering the respective ability (e.g., Power)
 % value. Each time a new part of an upgrade is performed you need to change
@@ -9,47 +7,53 @@ clear; clc; tic
 % another part, while each row corresponds to another ability. At this
 % point these are my available parts and upgrades:
 
-%              Starter TheAnchor SoftTouch SlamStop WTWT
-p.Brakes.Data =     [8      10       11         9       9;          % Power
-                     1       4       10         6      11;          % Aero
-                     1       7        1         1       3;          % Grip
-                     3       4        4        12       3;          % Reliability
-                     0      -0.03     0.1      -0.19   -0.04];      % AveragePitStopTime
+%                Starter   Gecko
+% LVL                1       3
+p.Brakes.Data =     [7       7;             % Power
+                     2       4;             % Aero
+                     2       7;             % Grip
+                     2       4;             % Reliability
+                     0       0.00];         % AveragePitStopTime
 
-%              Starter TheRevolution TORQ TheSredder  KingCog
-p.Gear.Data =       [4       4        4         5       4;          % Power
-                     1       6        4        11       4;          % Aero
-                     1       1       10         0       4;          % Grip
-                     3       4        4         3       6;          % Reliability
-                     0      -0.08    -0.38     +0.1    -0.0];       % AveragePitStopTime
+%                Starter  Engager
+% LVL                1       3
+p.Gear.Data =       [7       7;             % Power
+                     2       4;             % Aero
+                     2       4;             % Grip
+                     2       4;             % Reliability
+                     0      -0.08];         % AveragePitStopTime
 
-%                Starter   Stiky JetStream TheAfterBurner
-p.RearWing.Data =  [18      19       18        19;                  % Power
-                     1       1        7         3;                  % Aero
-                     1      11        1         6;                  % Grip
-                     3       4        4         3;                  % Reliability
-                     0      -0.19    -0.12     +0.1];               % AveragePitStopTime
+%                Starter   Phazer
+% LVL                1       2
+p.RearWing.Data =   [7       7;             % Power
+                     2       2;             % Aero
+                     2       4;             % Grip
+                     2       4;             % Reliability
+                     0       0.00];         % AveragePitStopTime
 
-%                 Starter Ramjet TheTurbulence LaserLock TheRollercoaster
-p.FrontWing.Data = [13      13       13        15        13;        % Power
-                     1       4        7         2         3;        % Aero
-                     1       1        1        13         3;        % Grip
-                     3       6        5         4         4;        % Reliability
-                     0      +0.0     -0.12     -0.09     +0.1];     % AveragePitStopTime
+%                Starter TheCarver Lock-On
+% LVL                1       1       3
+p.FrontWing.Data =  [7       7       7;     % Power
+                     2       3       4;     % Aero
+                     2       3       3;     % Grip
+                     2      10       4;     % Reliability
+                     0      -0.07   -0.12]; % AveragePitStopTime
 
-%             Starter TheMagicCarpet TheSmoothie TheStilts
-p.Suspension.Data = [4       9        9        10;                  % Power
-                     1       1        3        12;                  % Aero
-                     1       2       11         2;                  % Grip
-                     3       5        4         4;                  % Reliability
-                     0      +0.1     +0.1      -0.19];              % AveragePitStopTime
+%                Starter Compressor
+% LVL                1       3
+p.Suspension.Data = [7       7;             % Power
+                     2       8;             % Aero
+                     2       4;             % Grip
+                     2       6;             % Reliability
+                     0       0.00];         % AveragePitStopTime
 
-%                Starter TheInferno Zen    FreeWheeler
-p.Engine.Data =    [21      22       25        22;                  % Power
-                     1       6       11        10;                  % Aero
-                     1       3        6         1;                  % Grip
-                     3       4        4         3;                  % Reliability
-                     0      -0.19    -0.09     +0.0];               % AveragePitStopTime
+%                Starter TheStickler Gorolla
+% LVL                1       5       1
+p.Engine.Data =     [8      15      13;     % Power
+                     2       4       3;     % Aero
+                     2       4       5;     % Grip
+                     2       4       3;     % Reliability
+                     0      -0.13   -0.07]; % AveragePitStopTime
 
 %% NECESSARY PARAMETER CALCULATION
 % Caclulate the maximum (or minimum for averege pit stop time) value
