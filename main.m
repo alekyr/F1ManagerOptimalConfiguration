@@ -7,29 +7,29 @@ clear; clc; tic
 % another part, while each row corresponds to another ability. At this
 % point these are my available parts and upgrades:
 
-%                Starter   Gecko
-% LVL                1       3
-p.Brakes.Data =     [7       7;             % Power
-                     2       4;             % Aero
-                     2       7;             % Grip
-                     2       4;             % Reliability
-                     0       0.00];         % AveragePitStopTime
+%                Starter   Gecko TheKeeper Vacuum
+% LVL                1       3       1       3
+p.Brakes.Data =     [7       7       7       7;             % Power
+                     2       4       3       7;             % Aero
+                     2       7      10      10;             % Grip
+                     2       4      12       4;             % Reliability
+                     0       0.00    0.00    0.00];         % AveragePitStopTime
 
 %                Starter  Engager
-% LVL                1       3
+% LVL                1       5
 p.Gear.Data =       [7       7;             % Power
                      2       4;             % Aero
                      2       4;             % Grip
-                     2       4;             % Reliability
-                     0      -0.08];         % AveragePitStopTime
+                     2       5;             % Reliability
+                     0      -0.12];         % AveragePitStopTime
 
-%                Starter   Phazer
-% LVL                1       2
-p.RearWing.Data =   [7       7;             % Power
-                     2       2;             % Aero
-                     2       4;             % Grip
-                     2       4;             % Reliability
-                     0       0.00];         % AveragePitStopTime
+%                Starter   Phazer Contrail
+% LVL                1       2       1
+p.RearWing.Data =   [7       7       9;             % Power
+                     2       2       5;             % Aero
+                     2       4       3;             % Grip
+                     2       4       3;             % Reliability
+                     0       0.00    0.00];         % AveragePitStopTime
 
 %                Starter TheCarver Lock-On
 % LVL                1       1       3
