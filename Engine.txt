@@ -10,3 +10,7 @@ TheStickler
 
 Gorilla
 13 3 5 3 -0.07
+16 4 5 4 -0.13
+
+TheBrute
+8 3 6 3 -0.07

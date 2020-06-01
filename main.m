@@ -15,45 +15,45 @@ p.Brakes.Data =     [7       7       7       7;             % Power
                      2       4      12       4;             % Reliability
                      0       0.00    0.00    0.00];         % AveragePitStopTime
 
-%                Starter  Engager
-% LVL                1       5
-p.Gear.Data =       [7       7;             % Power
-                     2       4;             % Aero
-                     2       4;             % Grip
-                     2       5;             % Reliability
-                     0      -0.12];         % AveragePitStopTime
+%                Starter  Engager Sliders
+% LVL                1       5       2
+p.Gear.Data =       [7       7       7;             % Power
+                     2       4       4;             % Aero
+                     2       4       4;             % Grip
+                     2       5       8;             % Reliability
+                     0      -0.12   -0.12];         % AveragePitStopTime
 
 %                Starter   Phazer Contrail
-% LVL                1       2       1
+% LVL                1       3       1
 p.RearWing.Data =   [7       7       9;             % Power
-                     2       2       5;             % Aero
-                     2       4       3;             % Grip
+                     2       4       5;             % Aero
+                     2       5       3;             % Grip
                      2       4       3;             % Reliability
                      0       0.00    0.00];         % AveragePitStopTime
 
-%                Starter TheCarver Lock-On
-% LVL                1       1       3
-p.FrontWing.Data =  [7       7       7;     % Power
-                     2       3       4;     % Aero
-                     2       3       3;     % Grip
-                     2      10       4;     % Reliability
-                     0      -0.07   -0.12]; % AveragePitStopTime
+%                Starter TheCarver Lock-On BigBite Blazer
+% LVL                1       1       3       1       1
+p.FrontWing.Data =  [7       7       7       9       7;     % Power
+                     2       3       4       3       2;     % Aero
+                     2       3       3       3       3;     % Grip
+                     2      10       4       4       3;     % Reliability
+                     0      -0.07   -0.12   -0.07   -0.07]; % AveragePitStopTime
 
-%                Starter Compressor
-% LVL                1       3
-p.Suspension.Data = [7       7;             % Power
-                     2       8;             % Aero
-                     2       4;             % Grip
-                     2       6;             % Reliability
-                     0       0.00];         % AveragePitStopTime
+%                Starter Compressor Infuencer
+% LVL                1       4       1
+p.Suspension.Data = [7       7       7;             % Power
+                     2       9       6;             % Aero
+                     2       4       3;             % Grip
+                     2       7       4;             % Reliability
+                     0       0.00    0.00];         % AveragePitStopTime
 
-%                Starter TheStickler Gorolla
-% LVL                1       5       1
-p.Engine.Data =     [8      15      13;     % Power
-                     2       4       3;     % Aero
-                     2       4       5;     % Grip
-                     2       4       3;     % Reliability
-                     0      -0.13   -0.07]; % AveragePitStopTime
+%                Starter TheStickler Gorilla TheBrute
+% LVL                1       5       2       1
+p.Engine.Data =     [8      15      16       8;     % Power
+                     2       4       4       3;     % Aero
+                     2       4       5       6;     % Grip
+                     2       4       4       3;     % Reliability
+                     0      -0.13   -0.13   -0.07]; % AveragePitStopTime
 
 %% NECESSARY PARAMETER CALCULATION
 % Caclulate the maximum (or minimum for averege pit stop time) value
@@ -115,6 +115,9 @@ options_ga = gaoptimset('PlotFcn',{@gaplotbestf, @gaplotstopping, ...
     @gaplotscorediversity, @gaplotscores, @gaplotstopping}, 'Display', 'iter');
 % All decision variables are integers, so:
 IntCon = [1, 2, 3, 4, 5, 6];
+
+% Weights on each term, Power, Aero, Grip, Reliability, AveragePitStopTime
+p.Weight            = [   1     1     1        0.1             0.5];
 % Perform the global optimization using FUNOBJ. For details look inside the
 % respective objective function.
 [x_normal,fval_normal,exitflag_normal] = ga(@(x)FUNOBJ(x,p),length(IntCon),[],[],[],[],lb,ub,[],IntCon, options_ga);
