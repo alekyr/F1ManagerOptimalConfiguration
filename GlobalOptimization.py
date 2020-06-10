@@ -3,54 +3,55 @@ import numpy as np
 ##from mpl_toolkits.mplot3d import Axes3D
 ##from scipy import optimize
 from gekko import GEKKO
+##import pdb
 
-#                   Starter   Gecko TheKeeper Vacuum
-# LVL                   1       3       1       3
-Brakes     = np.array([[7,      7,      7,      7],       # Power
-                       [2,      4,      3,      7],       # Aero
-                       [2,      7,     10,     10],       # Grip
-                       [2,      4,     12,      4],       # Reliability
-                       [0,      0.00,   1.00,   0.00]])   # AveragePitStopTimeReduction
+#                   Starter   Gecko TheKeeper Vacuum GragOn Minimax
+# LVL                   1       4       1       6       1       2
+Brakes     = np.array([[7,      7,      7,      8,      7,      7],       # Power
+                       [2,      4,      3,      8,      9,      9],       # Aero
+                       [2,     10,     10,     15,      6,     14],       # Grip
+                       [2,      4,     12,      5,      3,      4],       # Reliability
+                       [0,      0.00,   0.00,   0.00,   0.00,   0.00]])   # AveragePitStopTimeReduction
 
-#                   Starter  Engager
-# LVL                   1       5
-Gear       = np.array([[7,      7],       # Power
-                       [2,      4],       # Aero
-                       [2,      4],       # Grip
-                       [2,      5],       # Reliability
-                       [0,     -0.12]])   # AveragePitStopTimeReduction
+#                   Starter  Engager Vortex    MSM  Sliders TheGateway
+# LVL                   1       6       2       2       5       1
+Gear       = np.array([[7,      8,      7,      7,      7,      7],       # Power
+                       [2,      5,      7,      4,      4,      3],       # Aero
+                       [2,      5,      4,      4,      4,      5],       # Grip
+                       [2,      5,      4,      8,     12,      3],       # Reliability
+                       [0,     -0.16,  -0.22,  -0.04,  -0.12,  -0.12]])   # AveragePitStopTimeReduction
 
-#                   Starter  Phazer Contrail
-# LVL                   1       2       1
-RearWing   = np.array([[7,      7,      9],       # Power
-                       [2,      2,      5],       # Aero
-                       [2,      4,      3],       # Grip
-                       [2,      4,      3],       # Reliability
-                       [0,      0.00,   0.00]])   # AveragePitStopTimeReduction
+#                   Starter  Phazer Contrail Lock&Load
+# LVL                   1       6       3       1
+RearWing   = np.array([[7,      8,     10,      7],       # Power
+                       [2,     10,      8,      6],       # Aero
+                       [2,      7,      4,      3],       # Grip
+                       [2,      5,      4,      3],       # Reliability
+                       [0,      0.00,   0.00,  -0.14]])   # AveragePitStopTimeReduction
 
-#                   Starter TheCarver Lock-On
-# LVL                   1       1       3
-FrontWing  = np.array([[7,      7,      7],       # Power
-                       [2,      3,      4],       # Aero
-                       [2,      3,      3],       # Grip
-                       [2,     10,      4],       # Reliability
-                       [0,     -0.07,  -0.12]])   # AveragePitStopTimeReduction
+#                   Starter TheCarver Lock-On BigBite Blazer
+# LVL                   1       1       6       4       2
+FrontWing  = np.array([[7,      7,      8,     12,      7],       # Power
+                       [2,      3,      5,      4,      2],       # Aero
+                       [2,      3,      4,      4,      4],       # Grip
+                       [2,     10,      5,      4,      3],       # Reliability
+                       [0,     -0.07,  -0.55,  -0.13,  -0.13]])   # AveragePitStopTimeReduction
 
-#                   Starter Compressor
-# LVL                   1       3
-Suspension = np.array([[7,      7],       # Power
-                       [2,      8],       # Aero
-                       [2,      4],       # Grip
-                       [2,      6],       # Reliability
-                       [0,      0.00]])   # AveragePitStopTimeReduction
+#                   Starter Compressor Influencer Pinpoint
+# LVL                   1       6       1       1
+Suspension = np.array([[7,      8,      7,      7],       # Power
+                       [2,     10,      6,      3],       # Aero
+                       [2,      5,      3,      3],       # Grip
+                       [2,      9,      4,      3],       # Reliability
+                       [0,      0.00,   0.00,  -0.02]])   # AveragePitStopTimeReduction
 
-#                  Starter TheStickler Gorolla
-# LVL                   1       5       1
-Engine     = np.array([[8,     15,     13],       # Power
-                       [2,      4,      3],       # Aero
-                       [2,      4,      5],       # Grip
-                       [2,      4,      3],       # Reliability
-                       [0,     -0.13,  -0.07]])   # AveragePitStopTimeReduction
+#                  Starter TheStickler Gorilla TheBrute BigBore
+# LVL                   1       7       3       6       2
+Engine     = np.array([[8,     17,     17,     14,     17],       # Power
+                       [2,      5,      4,      5,      4],       # Aero
+                       [2,      5,      6,     10,      4],       # Grip
+                       [2,      5,      4,      5,      4],       # Reliability
+                       [0,     -0.19,  -0.13,  -0.19,  -0.13]])   # AveragePitStopTimeReduction
 
 print(Brakes)
 print()
@@ -65,13 +66,6 @@ print()
 print(Engine)
 
 def FUNOBJ(x, Brakes, Gear, RearWing, FrontWing, Suspension, Engine):
-##    print(type(x))
-##    print(x)
-##    x = np.array(x)
-##    print(type(x))
-##    print(x)
-    
-##    print(int(x, 2))
 
     # Define max data in Brakes
     bestBrakes = [0 for x in range(Brakes.shape[0])]
@@ -136,49 +130,54 @@ def FUNOBJ(x, Brakes, Gear, RearWing, FrontWing, Suspension, Engine):
 
     # Do DO DO do 
     # Define brakes in objective
+    print(x)
+    
     y_brakes = 0
     i = 0
     for row in Brakes:
-        y_brakes = y_brakes + (Brakes[i][x[0]-1] - bestBrakes[i])**2
+##        pdb.set_trace()
+        y_brakes = y_brakes + (Brakes[i][x[0].value-1] - bestBrakes[i])**2
         i = i + 1
 
     # Define gear in objective
     y_gear = 0
     i = 0
     for row in Gear:
-##        y_gear = y_gear + (Gear[i][x[1]-1] - bestGear[i])**2
+        y_gear = y_gear + (Gear[i][x[1].value-1] - bestGear[i])**2
         i = i + 1
 
     # Define rearwing in objective
     y_rearwing = 0
     i = 0
     for row in RearWing:
-##        y_rearwing = y_rearwing + (RearWing[i][x[2]-1] - bestRearWing[i])**2
+        y_rearwing = y_rearwing + (RearWing[i][x[2].value-1] - bestRearWing[i])**2
         i = i + 1
 
     # Define frontwing in objective
     y_frontwing = 0
     i = 0
     for row in FrontWing:
-##        y_frontwing = y_frontwing + (FrontWing[i][x[3]-1] - bestFrontWing[i])**2
+        y_frontwing = y_frontwing + (FrontWing[i][x[3].value-1] - bestFrontWing[i])**2
         i = i + 1
 
     # Define suspension in objective
     y_suspension = 0
     i = 0
     for row in Suspension:
-##        y_suspension = y_suspension + (Suspension[i][x[4]-1] - bestSuspension[i])**2
+        y_suspension = y_suspension + (Suspension[i][x[4].value-1] - bestSuspension[i])**2
         i = i + 1
 
     # Define engine in objective
     y_engine = 0
     i = 0
     for row in Engine:
-##        y_engine = y_engine + (Engine[i][x[5]-1] - bestEngine[i])**2
+        y_engine = y_engine + (Engine[i][x[5].value-1] - bestEngine[i])**2
         i = i + 1
 
 
     Y = y_brakes + y_gear + y_rearwing + y_frontwing + y_suspension + y_engine
+    Y = 1/x[0]+1/x[1]+1/x[2]+1/x[3]+1/x[4]+ 1/Engine[2][x[5].value-1]
+    print(Y)
     return Y
 
 ##print()
@@ -200,7 +199,7 @@ x5 = m.Var(value=1, lb=1, ub=Suspension.shape[0], integer=True)
 x6 = m.Var(value=1, lb=1, ub=Engine.shape[0]    , integer=True)
 
 m.Obj(FUNOBJ([x1, x2, x3, x4, x5, x6], Brakes, Gear, RearWing, FrontWing, Suspension, Engine))
-m.solve(disp=False)
+m.solve(disp=True)
 
 print('Results')
 print('x1: ' + str(x1.value))

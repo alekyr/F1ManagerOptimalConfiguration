@@ -139,7 +139,9 @@ def FUNOBJ(x, Brakes, Gear, RearWing, FrontWing, Suspension, Engine):
     y_brakes = 0
     i = 0
     for row in Brakes:
-        y_brakes = y_brakes + (Brakes[i][x[0]-1] - bestBrakes[i])**2
+##        breakpoint()
+##        print(x[0])
+        y_brakes = y_brakes + (Brakes[i][x[0].VALUE-1] - bestBrakes[i])**2
         i = i + 1
 
     # Define gear in objective

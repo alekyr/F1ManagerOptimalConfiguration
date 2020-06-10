@@ -7,53 +7,53 @@ clear; clc; tic
 % another part, while each row corresponds to another ability. At this
 % point these are my available parts and upgrades:
 
-%                Starter   Gecko TheKeeper Vacuum
-% LVL                1       3       1       3
-p.Brakes.Data =     [7       7       7       7;             % Power
-                     2       4       3       7;             % Aero
-                     2       7      10      10;             % Grip
-                     2       4      12       4;             % Reliability
+%                Starter   Gecko TheKeeper Vacuum Drag-on Minimax
+% LVL                1       4       1       6       1       2
+p.Brakes.Data =     [7       7       7       8       7       7;             % Power
+                     2       4       3       8       9       9;             % Aero
+                     2      10      10      15       6      14;             % Grip
+                     2       4      12       4       3       4;             % Reliability
+                     0       0.00    0.00    0.00    0.00    0.00];         % AveragePitStopTime
+
+%                Starter  Engager Vortex    MSM Sliders TheGetaway
+% LVL                1       6       2       2       5       1
+p.Gear.Data =       [7       8       7       7       7       7;             % Power
+                     2       5       7       4       4       3;             % Aero
+                     2       5       4       4       4       5;             % Grip
+                     2       5       4       8      12       3;             % Reliability
+                     0      -0.16   -0.22   -0.04   -0.12   -0.12];         % AveragePitStopTime
+
+%                Starter   Phazer Contrail Lock&Load
+% LVL                1       6       3       1
+p.RearWing.Data =   [7       8      10       7;             % Power
+                     2      10       8       6;             % Aero
+                     2       7       4       3;             % Grip
+                     2       5       4       3;             % Reliability
                      0       0.00    0.00    0.00];         % AveragePitStopTime
 
-%                Starter  Engager Sliders
-% LVL                1       5       2
-p.Gear.Data =       [7       7       7;             % Power
-                     2       4       4;             % Aero
-                     2       4       4;             % Grip
-                     2       5       8;             % Reliability
-                     0      -0.12   -0.12];         % AveragePitStopTime
-
-%                Starter   Phazer Contrail
-% LVL                1       3       1
-p.RearWing.Data =   [7       7       9;             % Power
-                     2       4       5;             % Aero
-                     2       5       3;             % Grip
-                     2       4       3;             % Reliability
-                     0       0.00    0.00];         % AveragePitStopTime
-
 %                Starter TheCarver Lock-On BigBite Blazer
-% LVL                1       1       3       1       1
-p.FrontWing.Data =  [7       7       7       9       7;     % Power
-                     2       3       4       3       2;     % Aero
-                     2       3       3       3       3;     % Grip
-                     2      10       4       4       3;     % Reliability
-                     0      -0.07   -0.12   -0.07   -0.07]; % AveragePitStopTime
+% LVL                1       1       6       4       2
+p.FrontWing.Data =  [7       7       8      12       7;     % Power
+                     2       3       5       4       2;     % Aero
+                     2       3       4       4       4;     % Grip
+                     2      10       5       4       3;     % Reliability
+                     0      -0.07   -0.55   -0.13   -0.13]; % AveragePitStopTime
 
-%                Starter Compressor Infuencer
-% LVL                1       4       1
-p.Suspension.Data = [7       7       7;             % Power
-                     2       9       6;             % Aero
-                     2       4       3;             % Grip
-                     2       7       4;             % Reliability
-                     0       0.00    0.00];         % AveragePitStopTime
+%                Starter Compressor Infuencer Pinpoint
+% LVL                1       6       1       1
+p.Suspension.Data = [7       8       7       7;             % Power
+                     2      10       6       3;             % Aero
+                     2       5       3       3;             % Grip
+                     2       9       4       3;             % Reliability
+                     0       0.00    0.00   -0.02];         % AveragePitStopTime
 
-%                Starter TheStickler Gorilla TheBrute
-% LVL                1       5       2       1
-p.Engine.Data =     [8      15      16       8;     % Power
-                     2       4       4       3;     % Aero
-                     2       4       5       6;     % Grip
-                     2       4       4       3;     % Reliability
-                     0      -0.13   -0.13   -0.07]; % AveragePitStopTime
+%                Starter TheStickler Gorilla TheBrute BigBore
+% LVL                1       7       3       6       2
+p.Engine.Data =     [8      17      17      14      17;     % Power
+                     2       5       4       5       4;     % Aero
+                     2       5       6      10       4;     % Grip
+                     2       5       4       5       4;     % Reliability
+                     0      -0.19   -0.13   -0.19   -0.13]; % AveragePitStopTime
 
 %% NECESSARY PARAMETER CALCULATION
 % Caclulate the maximum (or minimum for averege pit stop time) value
