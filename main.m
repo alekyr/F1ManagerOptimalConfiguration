@@ -205,58 +205,6 @@ end
 p.Engine.LvL  = LvL;
 p.Engine.Data = Stats;
 
-%%
-% %                Starter   Gecko TheKeeper Vacuum Drag-on Minimax
-% % LVL                1       4       1       6       1       2
-% p.Brakes.Data =     [7       7       7       8       7       7;             % Power
-%                      2       4       3       8       9       9;             % Aero
-%                      2      10      10      15       6      14;             % Grip
-%                      2       4      12       4       3       4;             % Reliability
-%                      0       0.00    0.00    0.00    0.00    0.00];         % AveragePitStopTime
-% 
-% p.Brakes.Data = Stats;
-% 
-% 
-% %                Starter  Engager Vortex    MSM Sliders TheGetaway
-% % LVL                1       6       2       2       6       1
-% p.Gear.Data =       [7       8       7       7       8       7;             % Power
-%                      2       5       7       4       5       3;             % Aero
-%                      2       5       4       4       5       5;             % Grip
-%                      2       5       4       8      13       3;             % Reliability
-%                      0      -0.16   -0.22   -0.04   -0.12   -0.12];         % AveragePitStopTime
-% 
-% %                Starter   Phazer Contrail Perigrine Lock&Load
-% % LVL                1       6       3       1       1
-% p.RearWing.Data =   [7       8      10      13       7;             % Power
-%                      2      10       8       2       6;             % Aero
-%                      2       7       4       3       3;             % Grip
-%                      2       5       4       3       3;             % Reliability
-%                      0       0.00    0.00    0.00    0.00];         % AveragePitStopTime
-% 
-% %                Starter TheCarver Lock-On BigBite Blazer
-% % LVL                1       1       6       4       2
-% p.FrontWing.Data =  [7       7       8      12       7;     % Power
-%                      2       3       5       4       2;     % Aero
-%                      2       3       4       4       4;     % Grip
-%                      2      10       5       4       3;     % Reliability
-%                      0      -0.07   -0.55   -0.13   -0.13]; % AveragePitStopTime
-% 
-% %                Starter Bungee Compressor Infuencer Pinpoint
-% % LVL                1       1       7       1       1
-% p.Suspension.Data = [7       7       8       7       7;             % Power
-%                      2       3      11       6       3;             % Aero
-%                      2       3       5       3       3;             % Grip
-%                      2       3      12       4       3;             % Reliability
-%                      0       0.00    0.00    0.00   -0.02];         % AveragePitStopTime
-% 
-% %                Starter TheStickler Gorilla TheBrute BigBore
-% % LVL                1       7       3       6       2
-% p.Engine.Data =     [8      17      17      14      17;     % Power
-%                      2       5       4       5       4;     % Aero
-%                      2       5       6      10       4;     % Grip
-%                      2       5       4       5       4;     % Reliability
-%                      0      -0.19   -0.13   -0.19   -0.13]; % AveragePitStopTime
-
 %% NECESSARY PARAMETER CALCULATION
 % Caclulate the maximum (or minimum for averege pit stop time) value
 % available for each attribute (e.g., aero) for each type of component
@@ -319,7 +267,7 @@ options_ga = gaoptimset('PlotFcn',{@gaplotbestf, @gaplotstopping, ...
 IntCon = [1, 2, 3, 4, 5, 6];
 
 % Weights on each term, Power, Aero, Grip, Reliability, AveragePitStopTime
-p.Weight            = [   1     1     1        0.000001             0.000001];
+p.Weight            = [1 1 1 0.5 0.5];
 % Perform the global optimization using FUNOBJ. For details look inside the
 % respective objective function.
 [x_normal,fval_normal,exitflag_normal] = ga(@(x)FUNOBJ(x,p),length(IntCon),[],[],[],[],lb,ub,[],IntCon, options_ga);
