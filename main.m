@@ -267,7 +267,7 @@ options_ga = gaoptimset('PlotFcn',{@gaplotbestf, @gaplotstopping, ...
 IntCon = [1, 2, 3, 4, 5, 6];
 
 % Weights on each term, Power, Aero, Grip, Reliability, AveragePitStopTime
-p.Weight            = [1 2 2 0.05 0.05];
+p.Weight            = [1 1 1 0.05 0.5];
 % Perform the global optimization using FUNOBJ. For details look inside the
 % respective objective function.
 [x_normal,fval_normal,exitflag_normal] = ga(@(x)FUNOBJ(x,p),length(IntCon),[],[],[],[],lb,ub,[],IntCon, options_ga);
